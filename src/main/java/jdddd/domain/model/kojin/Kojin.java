@@ -42,6 +42,13 @@ public class Kojin extends AbstractEntity<Kojin> {
 		this.set世帯番号(builder.世帯番号);
 	}
 
+	@Override
+	public Kojin clone() throws CloneNotSupportedException {
+		Kojin c = (Kojin) super.clone();
+		// 参照型のフィールドは各々コピーすること
+		return c;
+	}
+
 	private void set宛名番号(AtenaBangou 宛名番号) {
 		this.宛名番号 = 宛名番号;
 	}

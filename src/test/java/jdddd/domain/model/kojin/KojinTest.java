@@ -50,8 +50,8 @@ public class KojinTest {
 	@Test
 	public void test氏名() {
 		kojin = new Kojin.Builder(new AtenaBangou("1111111111"), new KaiseiSeq(0))
-				.氏名(new Simei("漢字氏名", "英字氏名", "通称", "0")).build();
-		assertEquals(new Simei("漢字氏名", "英字氏名", "通称", "0"), kojin.氏名());
+				.氏名(new Simei("漢字氏名", "英字氏名", "通称", SimeiYuusenKubun.英字氏名優先)).build();
+		assertEquals(new Simei("漢字氏名", "英字氏名", "通称", SimeiYuusenKubun.英字氏名優先), kojin.氏名());
 	}
 
 }

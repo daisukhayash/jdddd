@@ -9,9 +9,9 @@ public class Simei extends AbstractValueObject {
 	private String 漢字氏名;
 	private String 英字氏名;
 	private String 通称;
-	private String 氏名優先区分;
+	private SimeiYuusenKubun 氏名優先区分;
 
-	public Simei(String 漢字氏名, String 英字氏名, String 通称, String 氏名優先区分) {
+	public Simei(String 漢字氏名, String 英字氏名, String 通称, SimeiYuusenKubun 氏名優先区分) {
 		this.漢字氏名 = 漢字氏名;
 		this.英字氏名 = 英字氏名;
 		this.通称 = 通称;
@@ -30,7 +30,7 @@ public class Simei extends AbstractValueObject {
 		return this.通称;
 	}
 
-	public String 氏名優先区分() {
+	public SimeiYuusenKubun 氏名優先区分() {
 		return this.氏名優先区分;
 	}
 

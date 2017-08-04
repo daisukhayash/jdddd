@@ -14,6 +14,7 @@ public class Kojin extends AbstractEntity<Kojin> {
 	private SetaiBangou 世帯番号;
 	private JuuminKubun 住民区分;
 	private Simei 氏名;
+	private Tudukigara 続柄;
 
 	public static class Builder {
 		// 必須
@@ -22,6 +23,7 @@ public class Kojin extends AbstractEntity<Kojin> {
 		private SetaiBangou 世帯番号;
 		private JuuminKubun 住民区分;
 		private Simei 氏名;
+		private Tudukigara 続柄;
 
 		public Builder(AtenaBangou 宛名番号, KaiseiSeq 改製ＳＥＱ) {
 			this.宛名番号 = 宛名番号;
@@ -43,6 +45,11 @@ public class Kojin extends AbstractEntity<Kojin> {
 			return this;
 		}
 
+		public Builder 続柄(Tudukigara 続柄) {
+			this.続柄 = 続柄;
+			return this;
+		}
+
 		public Kojin build() {
 			return new Kojin(this);
 		}
@@ -56,6 +63,7 @@ public class Kojin extends AbstractEntity<Kojin> {
 		this.set世帯番号(builder.世帯番号);
 		this.set住民区分(builder.住民区分);
 		this.set氏名(builder.氏名);
+		this.set続柄(builder.続柄);
 
 	}
 
@@ -104,6 +112,14 @@ public class Kojin extends AbstractEntity<Kojin> {
 
 	public Simei 氏名() {
 		return this.氏名;
+	}
+
+	public void set続柄(Tudukigara 続柄) {
+		this.続柄 = 続柄;
+	}
+
+	public Tudukigara 続柄() {
+		return this.続柄;
 	}
 
 }

@@ -54,4 +54,13 @@ public class KojinTest {
 		assertEquals(new Simei("漢字氏名", "英字氏名", "通称", SimeiYuusenKubun.英字氏名優先), kojin.氏名());
 	}
 
+	@Test
+	public void test続柄() {
+		kojin = new Kojin.Builder(new AtenaBangou("1111111111"), new KaiseiSeq(0)).続柄(Tudukigara.世帯主).build();
+		assertEquals(Tudukigara.世帯主, kojin.続柄());
+		assertEquals("世帯主", kojin.続柄().strictName());
+		kojin.set続柄(Tudukigara.夫_未届);
+		assertEquals("夫（未届）", kojin.続柄().strictName());
+	}
+
 }

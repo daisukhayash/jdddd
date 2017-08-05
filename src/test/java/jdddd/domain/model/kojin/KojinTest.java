@@ -55,6 +55,12 @@ public class KojinTest {
 	}
 
 	@Test
+	public void test性別() {
+		kojin = new Kojin.Builder(new AtenaBangou("1111111111"), new KaiseiSeq(0)).性別(Seibetu.男).build();
+		assertEquals(Seibetu.男, kojin.性別());
+	}
+
+	@Test
 	public void test続柄() {
 		kojin = new Kojin.Builder(new AtenaBangou("1111111111"), new KaiseiSeq(0)).続柄(Tudukigara.世帯主).build();
 		assertEquals(Tudukigara.世帯主, kojin.続柄());

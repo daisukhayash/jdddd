@@ -1,21 +1,22 @@
 package jdddd.domain.model.kojin;
 
-import jdddd.domain.shared.AbstractValueObject;
+import jdddd.domain.shared.Code;
 
-public class Seibetu extends AbstractValueObject {
+public enum Seibetu implements Code {
+	男("1"), //
+	女("2"), //
+	不明("3"), //
+	;
 
-	private final String[] 名称 = { "", "男", "女", "不明" };
-	private String 性別コード;
+	private String code;
 
-	public Seibetu(String 性別コード) {
-		this.性別コード = 性別コード;
+	private Seibetu(String code) {
+		this.code = code;
 	}
 
-	public String 性別コード() {
-		return this.性別コード;
+	@Override
+	public String code() {
+		return this.code;
 	}
 
-	public String 性別() {
-		return this.名称[Integer.parseInt(this.性別コード())];
-	}
 }

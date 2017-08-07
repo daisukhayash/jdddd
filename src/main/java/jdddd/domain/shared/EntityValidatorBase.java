@@ -5,11 +5,7 @@ import java.util.Map;
 
 public abstract class EntityValidatorBase<T> implements EntityValidator<T> {
 
-	private Map<String, ValidationRule<T>> validations;
-
-	public EntityValidatorBase() {
-		this.validations = new HashMap<>();
-	}
+	private Map<String, ValidationRule<T>> validations = new HashMap<>();
 
 	public void addValidation(String ruleName, ValidationRule<T> validationRule) {
 		this.validations.put(ruleName, validationRule);

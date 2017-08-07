@@ -3,7 +3,7 @@ package jdddd.domain.shared;
 public abstract class AbstractSpecification<T> implements Specification<T> {
 
 	@Override
-	public abstract boolean isSatisfiedBy(T obj);
+	public abstract boolean isSatisfiedBy(T t);
 
 	@Override
 	public Specification<T> and(Specification<T> spec) {

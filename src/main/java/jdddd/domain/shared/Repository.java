@@ -1,21 +1,23 @@
 package jdddd.domain.shared;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface Repository<T extends Entity<T>> {
 
 	T findById(EntityIdentifier<T> identifier);
 
-	List<T> findAll();
+	Collection<T> findAll();
 
 	boolean exists(EntityIdentifier<T> identifier);
 
 	boolean exists(T entity);
 
-	long count(EntityIdentifier<T> identifier);
+	long count();
 
 	void save(T entity);
 
-	void delete(EntityIdentifier<T> identifier);
+	void remove(EntityIdentifier<T> identifier);
+
+	void remove(T entity);
 
 }

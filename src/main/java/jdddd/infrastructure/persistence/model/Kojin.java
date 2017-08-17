@@ -1,16 +1,19 @@
 package jdddd.infrastructure.persistence.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the "kojin" database table.
  * 
  */
 @Entity
-@Table(name="\"kojin\"")
-@NamedQuery(name="Kojin.findAll", query="SELECT k FROM Kojin k")
+@Table(name = "\"kojin\"")
+@NamedQuery(name = "Kojin.findAll", query = "SELECT k FROM Kojin k")
 public class Kojin implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -1,7 +1,8 @@
 package jdddd.infrastructure.persistence.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Embeddable;
 
 /**
  * The primary key class for the "kojin" database table.
@@ -9,7 +10,7 @@ import javax.persistence.*;
  */
 @Embeddable
 public class KojinPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	// default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
 	private String 宛名番号;
@@ -18,15 +19,19 @@ public class KojinPK implements Serializable {
 
 	public KojinPK() {
 	}
+
 	public String get宛名番号() {
 		return this.宛名番号;
 	}
+
 	public void set宛名番号(String 宛名番号) {
 		this.宛名番号 = 宛名番号;
 	}
+
 	public String get改製ｓｅｑ() {
 		return this.改製ｓｅｑ;
 	}
+
 	public void set改製ｓｅｑ(String 改製ｓｅｑ) {
 		this.改製ｓｅｑ = 改製ｓｅｑ;
 	}
@@ -38,10 +43,8 @@ public class KojinPK implements Serializable {
 		if (!(other instanceof KojinPK)) {
 			return false;
 		}
-		KojinPK castOther = (KojinPK)other;
-		return 
-			this.宛名番号.equals(castOther.宛名番号)
-			&& this.改製ｓｅｑ.equals(castOther.改製ｓｅｑ);
+		KojinPK castOther = (KojinPK) other;
+		return this.宛名番号.equals(castOther.宛名番号) && this.改製ｓｅｑ.equals(castOther.改製ｓｅｑ);
 	}
 
 	public int hashCode() {
@@ -49,7 +52,7 @@ public class KojinPK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.宛名番号.hashCode();
 		hash = hash * prime + this.改製ｓｅｑ.hashCode();
-		
+
 		return hash;
 	}
 }

@@ -18,4 +18,9 @@ public enum JuuminKubun implements Code {
 		return this.code;
 	}
 
+	@Override
+	public String label() {
+		return this.name();
+	}
+
 }

@@ -19,4 +19,9 @@ public enum Seibetu implements Code {
 		return this.code;
 	}
 
+	@Override
+	public String label() {
+		return this.name();
+	}
+
 }

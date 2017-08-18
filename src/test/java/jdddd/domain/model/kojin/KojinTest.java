@@ -64,9 +64,9 @@ public class KojinTest {
 	public void test続柄() {
 		kojin = new Kojin.Builder(new AtenaBangou("1111111111"), new KaiseiSeq(0)).続柄(Tudukigara.世帯主).build();
 		assertEquals(Tudukigara.世帯主, kojin.続柄());
-		assertEquals("世帯主", kojin.続柄().strictName());
+		assertEquals("世帯主", kojin.続柄().label());
 		kojin.set続柄(Tudukigara.夫_未届);
-		assertEquals("夫（未届）", kojin.続柄().strictName());
+		assertEquals("夫（未届）", kojin.続柄().label());
 	}
 
 }

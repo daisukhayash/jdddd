@@ -6,7 +6,18 @@ public enum Tudukigara implements Code {
 	本人("01"), //
 	世帯主("02"), 準世帯主("03"), //
 	夫("11"), 妻("12"), //
-	夫_未届("13", "夫（未届）"), 妻_未届("14", "妻（未届）"), //
+	夫_未届("13", "夫（未届）") {
+		@Override
+		public String label() {
+			return this.label;
+		}
+	}, //
+	妻_未届("14", "妻（未届）") {
+		@Override
+		public String label() {
+			return this.label;
+		}
+	}, //
 	子("20"), //
 	父("51"), 母("52"), //
 	兄("71"), 弟("74"), //
@@ -15,15 +26,15 @@ public enum Tudukigara implements Code {
 	;
 
 	private String code;
-	private String strictName;
+	protected String label;
 
 	private Tudukigara(String code) {
 		this.code = code;
 	}
 
-	private Tudukigara(String code, String strictName) {
+	private Tudukigara(String code, String label) {
 		this.code = code;
-		this.strictName = strictName;
+		this.label = label;
 	}
 
 	@Override
@@ -31,10 +42,8 @@ public enum Tudukigara implements Code {
 		return this.code;
 	}
 
-	public String strictName() {
-		if (this.strictName != null) {
-			return this.strictName;
-		}
+	@Override
+	public String label() {
 		return this.name();
 	}
 

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import jdddd.domain.model.common.DefaultGyoumuDate;
+
 public class KojinTest {
 
 	private Kojin kojin;
@@ -69,4 +71,19 @@ public class KojinTest {
 		assertEquals("夫（未届）", kojin.続柄().label());
 	}
 
+	@Test
+	public void test個人メモ() {
+		kojin = new Kojin.Builder(new AtenaBangou("1111111111"), new KaiseiSeq(0)).build();
+		assertEquals(0, kojin.個人メモ().size());
+		KojinMemo memo1 = new KojinMemo(MemoType.異動停止, MemoReasonType.ＤＶ, DefaultGyoumuDate.of(2001, 1, 1),
+				DefaultGyoumuDate.of(2001, 12, 31), "メモ１");
+		KojinMemo memo2 = new KojinMemo(MemoType.処理注意, MemoReasonType.その他, DefaultGyoumuDate.of(2002, 2, 2),
+				DefaultGyoumuDate.of(2002, 11, 30), "メモ２");
+		kojin = new Kojin.Builder(new AtenaBangou("1111111111"), new KaiseiSeq(0)).個人メモ(memo1).build();
+		assertEquals(1, kojin.個人メモ().size());
+		assertEquals(memo1, kojin.個人メモ().get(0));
+		kojin.add個人メモ(memo2);
+		assertEquals(2, kojin.個人メモ().size());
+		assertEquals(memo2, kojin.個人メモ().get(1));
+	}
 }

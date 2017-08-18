@@ -1,5 +1,7 @@
 package jdddd.domain.model.kojin;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -17,6 +19,8 @@ public class Kojin extends AbstractEntity<Kojin> {
 	private Seibetu 性別;
 	private Tudukigara 続柄;
 
+	private List<KojinMemo> 個人メモ;
+
 	public static class Builder {
 		// 必須
 		private final AtenaBangou 宛名番号;
@@ -26,6 +30,8 @@ public class Kojin extends AbstractEntity<Kojin> {
 		private Simei 氏名;
 		private Seibetu 性別;
 		private Tudukigara 続柄;
+
+		private List<KojinMemo> 個人メモ = new ArrayList<>();
 
 		public Builder(AtenaBangou 宛名番号, KaiseiSeq 改製ＳＥＱ) {
 			this.宛名番号 = 宛名番号;
@@ -57,6 +63,14 @@ public class Kojin extends AbstractEntity<Kojin> {
 			return this;
 		}
 
+		public Builder 個人メモ(KojinMemo... kojinMemos) {
+			for (KojinMemo kojinMemo : kojinMemos) {
+				this.個人メモ.add(kojinMemo);
+			}
+			return this;
+
+		}
+
 		public Kojin build() {
 			return new Kojin(this);
 		}
@@ -73,6 +87,7 @@ public class Kojin extends AbstractEntity<Kojin> {
 		this.set性別(builder.性別);
 		this.set続柄(builder.続柄);
 
+		this.set個人メモ(builder.個人メモ);
 	}
 
 	@Override
@@ -136,6 +151,22 @@ public class Kojin extends AbstractEntity<Kojin> {
 
 	public Tudukigara 続柄() {
 		return this.続柄;
+	}
+
+	public void set個人メモ(List<KojinMemo> 個人メモ) {
+		this.個人メモ = 個人メモ;
+	}
+
+	public void add個人メモ(KojinMemo 個人メモ) {
+		this.個人メモ.add(個人メモ);
+	}
+
+	public void add個人メモ(int index, KojinMemo 個人メモ) {
+		this.個人メモ.add(index, 個人メモ);
+	}
+
+	public List<KojinMemo> 個人メモ() {
+		return this.個人メモ;
 	}
 
 }

@@ -1,4 +1,4 @@
-package jdddd.infrastructure.persistence.model;
+package jdddd.infrastructure.persistence.jpa.entity;
 
 import java.io.Serializable;
 
@@ -13,12 +13,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "\"kojin\"")
-@NamedQuery(name = "Kojin.findAll", query = "SELECT k FROM Kojin k")
-public class Kojin implements Serializable {
+@NamedQuery(name = "KojinEntity.findAll", query = "SELECT k FROM KojinEntity k")
+public class KojinEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private KojinPK id;
+	private KojinEntityPK id;
 
 	private String カナ氏名;
 
@@ -82,14 +82,14 @@ public class Kojin implements Serializable {
 
 	private String 和暦生年月日;
 
-	public Kojin() {
+	public KojinEntity() {
 	}
 
-	public KojinPK getId() {
+	public KojinEntityPK getId() {
 		return this.id;
 	}
 
-	public void setId(KojinPK id) {
+	public void setId(KojinEntityPK id) {
 		this.id = id;
 	}
 

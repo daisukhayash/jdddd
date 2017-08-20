@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -13,7 +14,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "\"kojin\"")
-@NamedQuery(name = "KojinEntity.findAll", query = "SELECT k FROM KojinEntity k")
+@NamedQueries({ @NamedQuery(name = "KojinEntity.findAll", query = "SELECT k FROM KojinEntity k"),
+		@NamedQuery(name = "KojinEntity.findById", query = "SELECT k FROM KojinEntity k WHERE k.id.宛名番号 = ?1 AND k.id.改製ＳＥＱ = ?2") })
 public class KojinEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

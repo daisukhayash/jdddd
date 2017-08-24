@@ -2,12 +2,8 @@ package jdddd.domain.model.kojin;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import org.apache.commons.lang3.ArrayUtils;
 
 import jdddd.domain.shared.AbstractEntity;
-import jdddd.domain.shared.DefaultEntityIdentifier;
 
 public class Kojin extends AbstractEntity<Kojin> {
 
@@ -77,8 +73,7 @@ public class Kojin extends AbstractEntity<Kojin> {
 	}
 
 	private Kojin(Builder builder) {
-		super(new DefaultEntityIdentifier<Kojin>(UUID.nameUUIDFromBytes(
-				ArrayUtils.addAll(builder.宛名番号.toString().getBytes(), builder.改製ＳＥＱ.toString().getBytes()))));
+		super(new KojinIdentifier(builder.宛名番号, builder.改製ＳＥＱ));
 		this.set宛名番号(builder.宛名番号);
 		this.set改製ＳＥＱ(builder.改製ＳＥＱ);
 		this.set世帯番号(builder.世帯番号);

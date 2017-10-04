@@ -1,11 +1,8 @@
 package jdddd.domain.model.common;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.time.chrono.JapaneseDate;
-import java.time.chrono.JapaneseEra;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,15 +45,19 @@ public class DefaultGyoumuDateTest {
 		}
 
 		@Test
-		public void testDefaultGyoumuDateString8() {
-			DefaultGyoumuDate date = DefaultGyoumuDate.parse("19791008");
+		public void testDefaultGyoumuDateParseYYYYMMDD() {
+			DefaultGyoumuDate date = DefaultGyoumuDate.parseYYYYMMDD("19791008");
 			assertEquals(1979, date.西暦年());
+			assertEquals(10, date.月());
+			assertEquals(8, date.日());
 		}
 
 		@Test
-		public void testDefaultGyoumuDateString7() {
-			DefaultGyoumuDate date = DefaultGyoumuDate.parse("3541008");
+		public void testDefaultGyoumuDateParseGYYMMDD() {
+			DefaultGyoumuDate date = DefaultGyoumuDate.parseGYYMMDD("3541008");
 			assertEquals(1979, date.西暦年());
+			assertEquals(10, date.月());
+			assertEquals(8, date.日());
 		}
 
 		@Test

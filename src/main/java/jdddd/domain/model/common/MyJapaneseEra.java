@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class MyJapaneseEra {
 
 	static final int ERA_OFFSET = -1;
-	
+
 	public static final MyJapaneseEra MEIJI = new MyJapaneseEra(1, "M");
 	public static final MyJapaneseEra TAISHO = new MyJapaneseEra(2, "T");
 	public static final MyJapaneseEra SHOWA = new MyJapaneseEra(3, "S");
@@ -23,18 +23,22 @@ public class MyJapaneseEra {
 
 	private final transient int eraNumber;
 	private final transient String eraAlphabet;
-	
+
 	private MyJapaneseEra(int eraNum, String eraAlphabet) {
 		this.eraNumber = eraNum;
 		this.eraAlphabet = eraAlphabet;
 	}
-	
-    public static MyJapaneseEra of(int myJapaneseEra) {
-        if (myJapaneseEra < MEIJI.eraNumber || ordinal(myJapaneseEra) >= KNOWN_ERAS.length) {
-            throw new DateTimeException("Invalid era: " + myJapaneseEra);
-        }
-        return KNOWN_ERAS[ordinal(myJapaneseEra)];
-    }
+
+	public static MyJapaneseEra of(int myJapaneseEra) {
+		if (myJapaneseEra < MEIJI.eraNumber || ordinal(myJapaneseEra) >= KNOWN_ERAS.length) {
+			throw new DateTimeException("Invalid era: " + myJapaneseEra);
+		}
+		return KNOWN_ERAS[ordinal(myJapaneseEra)];
+	}
+
+	public static MyJapaneseEra valueOf(String myJapaneseEra) {
+		return of(Integer.parseInt(myJapaneseEra));
+	}
 
 	public static MyJapaneseEra from(JapaneseEra japaneseEra) {
 		return of(japaneseEra.getValue() + 2);
@@ -45,17 +49,17 @@ public class MyJapaneseEra {
 	}
 
 	public static MyJapaneseEra[] values() {
-        return Arrays.copyOf(KNOWN_ERAS, KNOWN_ERAS.length);
-    }
+		return Arrays.copyOf(KNOWN_ERAS, KNOWN_ERAS.length);
+	}
 
 	public int getNumericValue() {
 		return this.eraNumber;
 	}
-	
+
 	public String getAlphabeticalValue() {
 		return this.eraAlphabet;
 	}
-	
+
 	private static int ordinal(int eraNum) {
 		return eraNum + ERA_OFFSET;
 	}

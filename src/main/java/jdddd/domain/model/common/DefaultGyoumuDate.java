@@ -1,20 +1,17 @@
 package jdddd.domain.model.common;
 
-import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.chrono.JapaneseDate;
 import java.time.chrono.JapaneseEra;
 import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
-import java.util.Locale;
 
 import jdddd.domain.shared.AbstractValueObject;
 
 public class DefaultGyoumuDate extends AbstractValueObject implements GyoumuDate {
-	
+
 	private MyJapaneseEra 元号;
 	private int 和暦年;
 	private int 月;
@@ -30,45 +27,32 @@ public class DefaultGyoumuDate extends AbstractValueObject implements GyoumuDate
 		return from(japaneseDate);
 	}
 
-	public static DefaultGyoumuDate parse(String 年月日) {
-		TemporalAccessor temporalAccessor;
-		DateTimeFormatter formatter;
-		ParsePosition position = new ParsePosition(0);
-		switch (年月日.length()) {
-		case 8:
-			formatter = DateTimeFormatter.ofPattern("yyyyMMdd").withResolverStyle(ResolverStyle.STRICT);
-			temporalAccessor = formatter.parseUnresolved(年月日, position);
-			break;
-		case 7:
-			String era = MyJapaneseEra.of(Integer.parseInt(年月日.substring(0, 1))).getAlphabeticalValue();
-			String _年月日 = era + 年月日.substring(1);
-			formatter = DateTimeFormatter.ofPattern("GGGGGyyMMdd").withResolverStyle(ResolverStyle.STRICT);
-			temporalAccessor = formatter.parseUnresolved(_年月日, position);
-			break;
-		default:
-			throw new IllegalArgumentException();
-		}
-		return from(temporalAccessor);
+	public static DefaultGyoumuDate parseYYYYMMDD(String 年月日) {
+		return of(Integer.parseInt(年月日.substring(0, 4)), Integer.parseInt(年月日.substring(4, 6)),
+				Integer.parseInt(年月日.substring(6, 8)));
+	}
+
+	public static DefaultGyoumuDate parseGYYMMDD(String 年月日) {
+		return of(MyJapaneseEra.valueOf(年月日.substring(0, 1)), Integer.parseInt(年月日.substring(1, 3)),
+				Integer.parseInt(年月日.substring(3, 5)), Integer.parseInt(年月日.substring(5, 7)));
 	}
 
 	public static DefaultGyoumuDate from(TemporalAccessor temporalAccessor) {
 		if (!(temporalAccessor instanceof JapaneseDate)) {
 			temporalAccessor = JapaneseDate.from(temporalAccessor);
 		}
-		return new DefaultGyoumuDate(
-				MyJapaneseEra.from(JapaneseEra.of(temporalAccessor.get(ChronoField.ERA))),
-				temporalAccessor.get(ChronoField.YEAR_OF_ERA),
-				temporalAccessor.get(ChronoField.MONTH_OF_YEAR),
+		return new DefaultGyoumuDate(MyJapaneseEra.from(JapaneseEra.of(temporalAccessor.get(ChronoField.ERA))),
+				temporalAccessor.get(ChronoField.YEAR_OF_ERA), temporalAccessor.get(ChronoField.MONTH_OF_YEAR),
 				temporalAccessor.get(ChronoField.DAY_OF_MONTH));
 	}
-	
+
 	private DefaultGyoumuDate(MyJapaneseEra 元号, int 和暦年, int 月, int 日) {
 		this.set元号(元号);
 		this.set和暦年(和暦年);
 		this.set月(月);
 		this.set日(日);
 	}
-	
+
 	@Override
 	public String 和暦年月日() {
 		return String.format("%d%2d%2d%2d", this.元号().getNumericValue(), this.和暦年(), this.月(), this.日());
@@ -124,7 +108,8 @@ public class DefaultGyoumuDate extends AbstractValueObject implements GyoumuDate
 
 	@Override
 	public String format(DateTimeFormatter formatter) {
-		//return JapaneseDate.of(this.元号().toJapaneseEra(),this.西暦年(), this.月(), this.日()).format(formatter);
+		// return JapaneseDate.of(this.元号().toJapaneseEra(),this.西暦年(),
+		// this.月(), this.日()).format(formatter);
 		JapaneseDate date = JapaneseDate.of(this.元号().toJapaneseEra(), this.和暦年(), this.月(), this.日());
 		String string = date.format(formatter);
 		return string;
@@ -159,11 +144,11 @@ public class DefaultGyoumuDate extends AbstractValueObject implements GyoumuDate
 	public boolean is日不詳() {
 		return this.日() == 99 ? true : false;
 	}
-	
+
 	private LocalDate toLocalDate() {
 		return LocalDate.of(this.西暦年(), this.月(), this.日());
 	}
-	
+
 	private JapaneseDate toJapaneseDate() {
 		return JapaneseDate.of(this.元号().toJapaneseEra(), this.和暦年(), this.月(), this.日());
 	}
@@ -171,14 +156,15 @@ public class DefaultGyoumuDate extends AbstractValueObject implements GyoumuDate
 	private void set元号(MyJapaneseEra 元号) {
 		this.元号 = 元号;
 	}
+
 	private void set和暦年(int 和暦年) {
 		this.和暦年 = 和暦年;
 	}
-	
+
 	private void set月(int 月) {
 		this.月 = 月;
 	}
-	
+
 	private void set日(int 日) {
 		this.日 = 日;
 	}
